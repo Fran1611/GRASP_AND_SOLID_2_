@@ -25,16 +25,26 @@ namespace Full_GRASP_And_SOLID.Library
             this.steps.Remove(step);
         }
 
-        // Metodo para dar formato al texto receta.
         public string FormatRecipeToPrint()
         {
             string recipe = ($"Receta de {this.FinalProduct.Description}:\n");
             foreach (Step step in this.steps)
             {
                 recipe += ($"{step.Quantity} de '{step.Input.Description}' " +
-                    $"usando '{step.Equipment.Description}' durante {step.Time}\n");
+                    $"usando '{step.Equipment.Description}' durante {step.Time} \n");
             }
+            recipe += $"El costo de hacer {this.FinalProduct.Description} es de: {GetProductionCost()}\n";
             return recipe;
+        }
+        public double GetProductionCost()
+        {   
+        double costoFinal = 0;
+            
+            foreach(Step step in steps)
+            {
+                costoFinal += (step.Quantity/1000 * step.Input.UnitCost) + (step.Time/3600 * (step.Equipment.HourlyCost));
+            }
+            return costoFinal;
         }
     }
 }
