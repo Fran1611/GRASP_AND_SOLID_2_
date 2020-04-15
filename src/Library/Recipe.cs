@@ -25,14 +25,16 @@ namespace Full_GRASP_And_SOLID.Library
             this.steps.Remove(step);
         }
 
-        public void PrintRecipe()
+        // Metodo para dar formato al texto receta.
+        public string FormatRecipeToPrint()
         {
-            Console.WriteLine($"Receta de {this.FinalProduct.Description}:");
+            string recipe = ($"Receta de {this.FinalProduct.Description}:\n");
             foreach (Step step in this.steps)
             {
-                Console.WriteLine($"{step.Quantity} de '{step.Input.Description}' " +
-                    $"usando '{step.Equipment.Description}' durante {step.Time}");
+                recipe += ($"{step.Quantity} de '{step.Input.Description}' " +
+                    $"usando '{step.Equipment.Description}' durante {step.Time}\n");
             }
+            return recipe;
         }
     }
 }
