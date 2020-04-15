@@ -8,7 +8,8 @@ using System;
 using System.Collections;
 
 /* Le asignamos a la clase Recipe la responsabilidad de de implementar el metodo GetProductionCost, ya que la clase conoce 
-toda la informacion para implementarlo. Por lo tanto se usa el patron Expert. 
+toda la informacion para implementarlo. Ademas tambien tiene la responsabilidad de dar formato al texto de la receta, con el
+metodo FormatRecipeToPrint. Por lo tanto se usa el patron Expert. 
 La clase conoce la lista de pasos a seguir para hacer un producto, por lo tanto conoce la cantidad, el precio unitario, el costo
 del equipamiento y el tiempo del uso, que es lo que se necesita para el metodo.
 Los beneficios de utilizar este patron son:
