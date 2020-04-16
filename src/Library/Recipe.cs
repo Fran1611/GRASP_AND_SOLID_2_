@@ -48,7 +48,7 @@ namespace Full_GRASP_And_SOLID.Library
         }
         public double GetProductionCost()
         {   
-        double costoFinal = 0;
+            double costoFinal = 0;
             
             foreach(Step step in steps)
             {
