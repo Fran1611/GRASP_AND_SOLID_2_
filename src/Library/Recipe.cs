@@ -23,7 +23,21 @@ namespace Full_GRASP_And_SOLID.Library
     {
         private ArrayList steps = new ArrayList();
 
+        private Product finalProduct;
+
         public Product FinalProduct { get; set; }
+
+        public ArrayList Steps
+        {
+            get
+            {
+                return steps;
+            }
+            set
+            {
+                steps=value;
+            }
+        }
 
         public void AddStep(Step step)
         {
@@ -35,26 +49,24 @@ namespace Full_GRASP_And_SOLID.Library
             this.steps.Remove(step);
         }
 
-        public string FormatRecipeToPrint()
+       public void PrintRecipe()
         {
-            string recipe = ($"Receta de {this.FinalProduct.Description}:\n");
-            foreach (Step step in this.steps)
-            {
-                recipe += ($"{step.Quantity} de '{step.Input.Description}' " +
-                    $"usando '{step.Equipment.Description}' durante {step.Time} \n");
-            }
-            recipe += $"El costo de hacer {this.FinalProduct.Description} es de: {GetProductionCost()}\n";
-            return recipe;
+            ConsolePrinter cp = new ConsolePrinter(this);
+            cp.PrintRecipe();
         }
         public double GetProductionCost()
-        {   
-            double costoFinal = 0;
-            
-            foreach(Step step in steps)
+        {
+            double costoInsumos = 0;
+            double costoEquipamiento = 0;
+
+            foreach (Step paso in steps)
             {
-                costoFinal += (step.Quantity/1000 * step.Input.UnitCost) + (step.Time/3600 * (step.Equipment.HourlyCost));
+                costoInsumos+=paso.Input.UnitCost*paso.Quantity;
+                costoEquipamiento+=paso.Equipment.HourlyCost*paso.Time;
             }
-            return costoFinal;
+
+            return costoInsumos+costoEquipamiento;
+
         }
     }
 }

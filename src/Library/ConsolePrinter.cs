@@ -15,10 +15,24 @@ namespace Full_GRASP_And_SOLID.Library
 {
     public class ConsolePrinter
     {
-        // Metodo para imprimir la receta por consola.
-        public void PrintRecipe(string recipeToPrint)
-        {
-            Console.WriteLine(recipeToPrint);
+        private Recipe recipe;
+
+        public ConsolePrinter(Recipe recipe){
+            this.recipe=recipe;
         }
+
+
+        public void PrintRecipe()
+        {
+            Console.WriteLine($"Receta de {recipe.FinalProduct.Description}:");
+            foreach (Step step in recipe.Steps)
+            {
+                Console.WriteLine($"{step.Quantity} de '{step.Input.Description}' " +
+                    $"usando '{step.Equipment.Description}' durante {step.Time}");
+            }
+
+            Console.WriteLine($"Costo total de producción: {recipe.GetProductionCost()}");
+        }
+
     }
 }

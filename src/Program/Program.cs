@@ -22,11 +22,10 @@ namespace Full_GRASP_And_SOLID
             PopulateCatalogs();
 
             Recipe recipe = new Recipe();
-            ConsolePrinter printRecipe = new ConsolePrinter();
             recipe.FinalProduct = GetProduct("Café con leche");
             recipe.AddStep(new Step(GetProduct("Café"), 100, GetEquipment("Cafetera"), 120));
             recipe.AddStep(new Step(GetProduct("Leche"), 200, GetEquipment("Hervidor"), 60));
-            printRecipe.PrintRecipe(recipe.FormatRecipeToPrint());
+            recipe.PrintRecipe();
         }
 
         private static void PopulateCatalogs()
